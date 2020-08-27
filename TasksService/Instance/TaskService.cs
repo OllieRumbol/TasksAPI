@@ -15,9 +15,27 @@ namespace TasksService.Instance
 
         public static List<Task> DoneTasks = new List<Task>();
 
+        public List<Task> addNewTask(List<Task> tasks, string name)
+        {
+            Task newTask = new Task(Id: getNextId(tasks), Name: name, Jobs: new List<Job>());
+            tasks.Add(newTask);
+            return tasks;
+        }
+
         public int getNextId(List<Task> tasks)
         {
-            return tasks.Max(t => t.Id);
+            if(tasks == null)
+            {
+                throw new NullReferenceException();
+            }
+            else if (tasks.Count == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return tasks.Max(t => t.Id) + 1;
+            }
         }
     }
 }

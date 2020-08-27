@@ -8,5 +8,7 @@ namespace TasksService.Interface
     public interface ITaskService
     {
         int getNextId(List<Task> tasks);
+
+        List<Task> addNewTask(List<Task> tasks, string name);
     }
 }
