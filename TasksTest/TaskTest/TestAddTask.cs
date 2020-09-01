@@ -9,7 +9,7 @@ using TasksService.Interface;
 namespace TasksTest
 {
     [TestClass]
-    public class TestGetNextId
+    public class TestAddTask
     {
         ITaskService service;
 
@@ -20,29 +20,17 @@ namespace TasksTest
         }
 
         [TestMethod]
-        public void testGetNextId_EmptyCheck()
+        public void testAddTask_AddingTask()
         {
             //Arrange 
 
             //Act
-            int id = service.getNextId(service.getAllTasks());
+            service.addNewTask("Task 1");
+            service.addNewTask("Task 2");
+            service.addNewTask("Task 3");
 
             //Assert
-            Assert.AreEqual(1, id);
-        }
-
-        [TestMethod]
-        public void testGetNextId_Check()
-        {
-            //Arrange 
-            service.addNewTask("Blank");
-            service.addNewTask("Blank2");
-
-            //Act
-            int id = service.getNextId(service.getAllTasks());
-
-            //Assert
-            Assert.AreEqual(3, id);
+            Assert.AreEqual(3, service.getAllTasks().Count);
         }
 
         [TestCleanup]

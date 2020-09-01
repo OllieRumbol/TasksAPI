@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TasksModels;
 using TasksService.Instance;
 using TasksService.Interface;
 
 namespace TasksTest
 {
     [TestClass]
-    public class TestGetNextId
+    public class TestDeleteTask
     {
         ITaskService service;
 
@@ -20,29 +19,33 @@ namespace TasksTest
         }
 
         [TestMethod]
-        public void testGetNextId_EmptyCheck()
+        public void testDeleteTask_DeleteATask()
         {
-            //Arrange 
+            //Arrange
+            service.addNewTask("Task 1");
+            service.addNewTask("Task 2");
+            service.addNewTask("Task 3");
 
             //Act
-            int id = service.getNextId(service.getAllTasks());
+            service.DeleteTaskById(3);
 
             //Assert
-            Assert.AreEqual(1, id);
+            Assert.AreEqual(2, service.getAllTasks().Count);
         }
 
         [TestMethod]
-        public void testGetNextId_Check()
+        public void testDeleteTask_DeleteAllTasks()
         {
-            //Arrange 
-            service.addNewTask("Blank");
-            service.addNewTask("Blank2");
+            //Arrange
+            service.addNewTask("Task 1");
+            service.addNewTask("Task 2");
+            service.addNewTask("Task 3");
 
             //Act
-            int id = service.getNextId(service.getAllTasks());
+            service.DeleteAllTasks();
 
             //Assert
-            Assert.AreEqual(3, id);
+            Assert.AreEqual(0, service.getAllTasks().Count);
         }
 
         [TestCleanup]

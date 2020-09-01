@@ -4,19 +4,26 @@ using System.Text;
 
 namespace TasksModels
 {
-    public class Task
+    public class Task : Identifier
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
-        public IEnumerable<Job> Jobs { get; set; }
+        public List<Job> Jobs { get; set; }
 
-        public Task(int Id, string Name, IEnumerable<Job> Jobs)
+        public Status Status { get; set; }
+
+        public Task(int Id, string Name, List<Job> Jobs, Status Stage) : base(Id)
         {
-            this.Id = Id;
             this.Name = Name;
             this.Jobs = Jobs;
+            this.Status = Stage;
         }
+    }
+
+    public enum Status
+    {
+        ToDo,
+        InProgress,
+        Done
     }
 }

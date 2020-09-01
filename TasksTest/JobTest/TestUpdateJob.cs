@@ -1,15 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TasksModels;
 using TasksService.Instance;
 using TasksService.Interface;
 
-namespace TasksTest
+namespace TasksTest.JobTest
 {
     [TestClass]
-    public class TestGetNextId
+    public class TestUpdateJob
     {
         ITaskService service;
 
@@ -20,29 +21,32 @@ namespace TasksTest
         }
 
         [TestMethod]
-        public void testGetNextId_EmptyCheck()
+        public void testupdateJob_UpdateNameOfJob()
         {
-            //Arrange 
+            //Arrange
+            service.addNewTask("Task 1");
+            service.AddJob(1, "Job 1");
 
             //Act
-            int id = service.getNextId(service.getAllTasks());
+            Task result = service.UpdateJobName(1, 1, "Job 2").First();
 
             //Assert
-            Assert.AreEqual(1, id);
+            Assert.AreEqual("Job 2", result.Jobs.First().Name);
         }
 
         [TestMethod]
-        public void testGetNextId_Check()
+        public void testupdateJob_UpdateStatusOfJob()
         {
-            //Arrange 
-            service.addNewTask("Blank");
-            service.addNewTask("Blank2");
+            //Arrange
+            service.addNewTask("Task 1");
+            service.AddJob(1, "Job 1");
 
             //Act
-            int id = service.getNextId(service.getAllTasks());
+            Task result = service.UpdateCheckJob(1, 1).First();
 
             //Assert
-            Assert.AreEqual(3, id);
+            Assert.IsTrue(result.Jobs.First().Done);
+
         }
 
         [TestCleanup]

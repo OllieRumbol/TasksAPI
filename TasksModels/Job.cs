@@ -4,15 +4,13 @@ using System.Text;
 
 namespace TasksModels
 {
-    public class Job
+    public class Job : Identifier
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public bool Done { get; set; }
 
-        public Job(int Id, string Name, bool Done)
+        public Job(int Id, string Name, bool Done) : base(Id)
         {
             this.Id = Id;
             this.Name = Name;
