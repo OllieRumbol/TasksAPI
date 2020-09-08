@@ -38,6 +38,18 @@ namespace TasksAPI.Controllers
         {
             return new JsonResult(service.addNewTask(task.Task));
         }
+
+        [HttpDelete]
+        public JsonResult deleteAllTasks()
+        {
+            return new JsonResult(service.DeleteAllTasks());
+        }
+
+        [HttpDelete("{id}")]
+        public JsonResult deleteTask(int id)
+        {
+            return new JsonResult(service.DeleteTaskById(id));
+        }
         
     }
 }
