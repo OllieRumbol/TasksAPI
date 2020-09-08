@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using TasksModels;
 using TasksService.Interface;
 
 namespace TasksAPI.Controllers
@@ -31,5 +32,12 @@ namespace TasksAPI.Controllers
         {
             return new JsonResult(service.getTaskById(id));
         }
+
+        [HttpPost]
+        public JsonResult addTasks(AddTask task)
+        {
+            return new JsonResult(service.addNewTask(task.Task));
+        }
+        
     }
 }
