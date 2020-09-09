@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TasksModels
 {
-    public class updateTask
+    public class UpdateTask
     {
         public int  Id { get; set; }
 

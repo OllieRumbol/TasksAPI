@@ -52,7 +52,7 @@ namespace TasksAPI.Controllers
         }
         
         [HttpPut]
-        public JsonResult updateTaskName(updateTask task)
+        public JsonResult updateTaskName(UpdateTask task)
         {
             Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
 
@@ -61,9 +61,15 @@ namespace TasksAPI.Controllers
 
         //JOBS
         [HttpPost("job")]
-        public JsonResult addJob(addJob job)
+        public JsonResult addJob(AddJob job)
         {
             return new JsonResult(service.AddJob(job.TaskId, job.JobName));
         } 
+
+        [HttpDelete("job")]
+        public JsonResult deleteJobById(DeleteJob job)
+        {
+            return new JsonResult(service.DeleteJobById(job.TaskId, job.JobId));
+        }
     }
 }
