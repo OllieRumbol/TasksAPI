@@ -58,5 +58,12 @@ namespace TasksAPI.Controllers
 
             return new JsonResult(service.UpdateTaskName(task.Id, task.Name, status));
         }
+
+        //JOBS
+        [HttpPost("job")]
+        public JsonResult addJob(addJob job)
+        {
+            return new JsonResult(service.AddJob(job.TaskId, job.JobName));
+        } 
     }
 }

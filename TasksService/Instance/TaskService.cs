@@ -26,7 +26,7 @@ namespace TasksService.Instance
 
         public List<Task> addNewTask(string name)
         {
-            Task newTask = new Task(Id: getNextId(Tasks), Name: name, Jobs: new List<Job>(), Stage: TasksModels.Status.ToDo);
+            Task newTask = new Task(Id: getNextId(Tasks), Name: name, Jobs: new List<Job>(), Status: TasksModels.Status.ToDo);
             Tasks.Add(newTask);
             return Tasks;
         }
