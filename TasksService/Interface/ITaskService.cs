@@ -20,9 +20,7 @@ namespace TasksService.Interface
 
         List<Task> DeleteTaskById(int id);
 
-        List<Task> UpdateTaskName(int id, string name);
-
-        List<Task> UpdateTaskStatus(int id, Status status);
+        List<Task> UpdateTaskName(int id, string name, Status status);
 
         List<Task> AddJob(int taskId, string jobName);
 

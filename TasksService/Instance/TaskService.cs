@@ -122,26 +122,13 @@ namespace TasksService.Instance
             return Tasks;
         }
 
-        public List<Task> UpdateTaskName(int id, string name)
+        public List<Task> UpdateTaskName(int id, string name, Status status)
         {
             foreach(Task task in Tasks)
             {
                 if(task.Id == id)
                 {
                     task.Name = name;
-                }
-                break;
-            }
-
-            return Tasks;
-        }
-
-        public List<Task> UpdateTaskStatus(int id, Status status)
-        {
-            foreach (Task task in Tasks)
-            {
-                if (task.Id == id)
-                {
                     task.Status = status;
                 }
                 break;

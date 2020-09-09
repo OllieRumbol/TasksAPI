@@ -51,5 +51,12 @@ namespace TasksAPI.Controllers
             return new JsonResult(service.DeleteTaskById(id));
         }
         
+        [HttpPut]
+        public JsonResult updateTaskName(updateTask task)
+        {
+            Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
+
+            return new JsonResult(service.UpdateTaskName(task.Id, task.Name, status));
+        }
     }
 }
