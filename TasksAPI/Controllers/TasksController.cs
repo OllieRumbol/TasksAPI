@@ -55,9 +55,15 @@ namespace TasksAPI.Controllers
         [HttpPut]
         public JsonResult updateTaskName(UpdateTask task)
         {
+            return new JsonResult(service.UpdateTaskName(task.Id, task.Name));
+        }
+
+        [HttpPut("status")]
+        public JsonResult updateTaskStatus(UpdateTask task)
+        {
             Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
 
-            return new JsonResult(service.UpdateTaskName(task.Id, task.Name, status));
+            return new JsonResult(service.UpdateTaskStatus(task.Id, status));
         }
 
         //JOBS
