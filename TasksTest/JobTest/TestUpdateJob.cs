@@ -42,7 +42,7 @@ namespace TasksTest.JobTest
             service.AddJob(1, "Job 1");
 
             //Act
-            Task result = service.UpdateCheckJob(1, 1).First();
+            Task result = service.UpdateJobDone(1, 1, true).First();
 
             //Assert
             Assert.IsTrue(result.Jobs.First().Done);

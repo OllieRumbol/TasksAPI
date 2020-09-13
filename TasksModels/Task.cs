@@ -12,11 +12,11 @@ namespace TasksModels
 
         public Status Status { get; set; }
 
-        public Task(int Id, string Name, List<Job> Jobs, Status Stage) : base(Id)
+        public Task(int Id, string Name, List<Job> Jobs, Status Status) : base(Id)
         {
             this.Name = Name;
             this.Jobs = Jobs;
-            this.Status = Stage;
+            this.Status = Status;
         }
     }
 
