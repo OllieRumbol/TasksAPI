@@ -82,7 +82,7 @@ namespace TasksService.Instance
             return Tasks.FirstOrDefault(t => t.Id == id);
         }
 
-        public List<Task> UpdateCheckJob(int taskId, int jobId)
+        public List<Task> UpdateJobDone(int taskId, int jobId, bool done)
         {
             foreach (Task task in Tasks)
             {
@@ -92,7 +92,7 @@ namespace TasksService.Instance
                     {
                         if (job.Id == jobId)
                         {
-                            job.Done = true;
+                            job.Done = done;
                         }
                     }
                 }

@@ -28,6 +28,6 @@ namespace TasksService.Interface
 
         List<Task> UpdateJobName(int taskId, int jobId, string jobName);
 
-        List<Task> UpdateCheckJob(int taskId, int jobId);
+        List<Task> UpdateJobDone(int taskId, int jobId, bool done);
     }
 }

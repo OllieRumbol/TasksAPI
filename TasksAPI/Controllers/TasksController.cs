@@ -21,6 +21,7 @@ namespace TasksAPI.Controllers
             this.service = service;
         }
 
+        //TASKS
         [HttpGet]
         public JsonResult getTaskById()
         {
@@ -70,6 +71,18 @@ namespace TasksAPI.Controllers
         public JsonResult deleteJobById(DeleteJob job)
         {
             return new JsonResult(service.DeleteJobById(job.TaskId, job.JobId));
+        }
+
+        [HttpPut("job")]
+        public JsonResult updateJobName(UpdateJob job)
+        {
+            return new JsonResult(service.UpdateJobName(job.TaskId, job.JobId, job.JobName));
+        }
+
+        [HttpPut("job/done")]
+        public JsonResult updateJobDone(UpdateJob job)
+        {
+            return new JsonResult(service.UpdateJobDone(job.TaskId, job.JobId, job.Done));
         }
     }
 }
