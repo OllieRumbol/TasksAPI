@@ -18,6 +18,7 @@ namespace TasksService.Instance
                 if(task.Id == taskId)
                 {
                     task.Jobs.Add(new Job(Id: getNextId(task.Jobs), Name: jobName, Done: false));
+                    break;
                 }
             }
 
@@ -44,6 +45,7 @@ namespace TasksService.Instance
                 if (task.Id == taskId)
                 {
                     task.Jobs.RemoveAll(j => j.Id == jobId);
+                    break;
                 }
             }
 
@@ -93,10 +95,10 @@ namespace TasksService.Instance
                         if (job.Id == jobId)
                         {
                             job.Done = done;
+                            break;
                         }
                     }
                 }
-                break;
             }
 
             return Tasks;
@@ -113,10 +115,10 @@ namespace TasksService.Instance
                         if(job.Id == jobId)
                         {
                             job.Name = jobName;
+                            break;
                         }
                     }
                 }
-                break;
             }
 
             return Tasks;
@@ -129,8 +131,8 @@ namespace TasksService.Instance
                 if(task.Id == id)
                 {
                     task.Name = name;
+                    break;
                 }
-                break;
             }
 
             return Tasks;
@@ -143,8 +145,8 @@ namespace TasksService.Instance
                 if (task.Id == id)
                 {
                     task.Status = status;
+                    break;
                 }
-                break;
             }
 
             return Tasks;
