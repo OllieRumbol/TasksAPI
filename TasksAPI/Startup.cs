@@ -17,6 +17,8 @@ namespace ToDoListAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +29,15 @@ namespace ToDoListAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://127.0.0.1:5500").AllowAnyHeader().AllowAnyMethod();
+                                  });
+            });
+
             services.AddScoped<ITaskService, TaskService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -46,6 +57,7 @@ namespace ToDoListAPI
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors(MyAllowSpecificOrigins);
         }
     }
 }

@@ -23,72 +23,76 @@ namespace TasksAPI.Controllers
 
         //TASKS
         [HttpGet]
-        public JsonResult getTaskById()
+        public ActionResult getTaskById()
         {
-            return new JsonResult(service.getAllTasks());
+            return Ok(service.getAllTasks());
         }
 
         [HttpGet("{id}")]
         public JsonResult getAllTasks(int id)
         {
+
+
+            Response.StatusCode = 200;
             return new JsonResult(service.getTaskById(id));
         }
 
         [HttpPost]
         public JsonResult addTasks(AddTask task)
         {
+            Response.StatusCode = 200;
             return new JsonResult(service.addNewTask(task.Task));
         }
 
         [HttpDelete]
-        public JsonResult deleteAllTasks()
+        public ActionResult deleteAllTasks()
         {
-            return new JsonResult(service.DeleteAllTasks());
+            return Ok(service.DeleteAllTasks());
         }
 
         [HttpDelete("{id}")]
-        public JsonResult deleteTask(int id)
+        public ActionResult deleteTask(int id)
         {
-            return new JsonResult(service.DeleteTaskById(id));
+            return Ok(service.DeleteTaskById(id));
         }
         
         [HttpPut]
-        public JsonResult updateTaskName(UpdateTask task)
+        public ActionResult updateTaskName(UpdateTask task)
         {
-            return new JsonResult(service.UpdateTaskName(task.Id, task.Name));
+            return Ok(service.UpdateTaskName(task.Id, task.Name));
         }
 
         [HttpPut("status")]
-        public JsonResult updateTaskStatus(UpdateTask task)
+        public ActionResult updateTaskStatus(UpdateTask task)
         {
             Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
 
-            return new JsonResult(service.UpdateTaskStatus(task.Id, status));
+            return Ok(service.UpdateTaskStatus(task.Id, status));
         }
 
         //JOBS
         [HttpPost("job")]
-        public JsonResult addJob(AddJob job)
+        public ActionResult addJob(AddJob job)
         {
-            return new JsonResult(service.AddJob(job.TaskId, job.JobName));
+            return Ok(service.AddJob(job.TaskId, job.JobName));
         } 
 
         [HttpDelete("job")]
-        public JsonResult deleteJobById(DeleteJob job)
+        public ActionResult deleteJobById(DeleteJob job)
         {
-            return new JsonResult(service.DeleteJobById(job.TaskId, job.JobId));
+            return Ok(service.DeleteJobById(job.TaskId, job.JobId));
         }
 
         [HttpPut("job")]
-        public JsonResult updateJobName(UpdateJob job)
+        public ActionResult updateJobName(UpdateJob job)
         {
-            return new JsonResult(service.UpdateJobName(job.TaskId, job.JobId, job.JobName));
+            return Ok(service.UpdateJobName(job.TaskId, job.JobId, job.JobName));
         }
 
         [HttpPut("job/done")]
-        public JsonResult updateJobDone(UpdateJob job)
+        public ActionResult updateJobDone(UpdateJob job)
         {
-            return new JsonResult(service.UpdateJobDone(job.TaskId, job.JobId, job.Done));
+            return Ok(service.UpdateJobDone(job.TaskId, job.JobId, job.Done));
         }
     }
 }
