@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +12,13 @@ namespace TasksModels
         public string Name { get; set; }
 
         public string  Status { get; set; }
+    }
+
+    public class UpdateTaskValidator : AbstractValidator<UpdateTask>
+    {
+        public UpdateTaskValidator()
+        {
+            RuleFor(r => r.Id).NotNull().NotEmpty().GreaterThan(0);
+        }
     }
 }
