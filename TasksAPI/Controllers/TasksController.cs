@@ -23,25 +23,31 @@ namespace TasksAPI.Controllers
 
         //TASKS
         [HttpGet]
-        public ActionResult getTaskById()
+        public ActionResult getAllTasks()
         {
             return Ok(service.getAllTasks());
         }
 
         [HttpGet("{id}")]
-        public JsonResult getAllTasks(int id)
+        public ActionResult getTaskById(int id)
         {
+            if(id != 0)
+            {
+                return Ok(service.getTaskById(id));
+            }
 
-
-            Response.StatusCode = 200;
-            return new JsonResult(service.getTaskById(id));
+            return BadRequest();
         }
 
         [HttpPost]
-        public JsonResult addTasks(AddTask task)
+        public ActionResult addTasks(AddTask task)
         {
-            Response.StatusCode = 200;
-            return new JsonResult(service.addNewTask(task.Task));
+            if (ModelState.IsValid)
+            {
+                return Ok(service.addNewTask(task.Task));
+            }
+
+            return BadRequest();
         }
 
         [HttpDelete]
@@ -53,46 +59,80 @@ namespace TasksAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult deleteTask(int id)
         {
-            return Ok(service.DeleteTaskById(id));
+            if (id != 0)
+            {
+                return Ok(service.DeleteTaskById(id));
+            }
+
+            return BadRequest();
         }
         
         [HttpPut]
         public ActionResult updateTaskName(UpdateTask task)
         {
-            return Ok(service.UpdateTaskName(task.Id, task.Name));
+            if (ModelState.IsValid)
+            {
+                return Ok(service.UpdateTaskName(task.Id, task.Name));
+            }
+
+            return BadRequest();
         }
 
         [HttpPut("status")]
         public ActionResult updateTaskStatus(UpdateTask task)
         {
-            Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
+            if (ModelState.IsValid)
+            {
+                Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
+                return Ok(service.UpdateTaskStatus(task.Id, status));
+            }
 
-            return Ok(service.UpdateTaskStatus(task.Id, status));
+            return BadRequest();
         }
 
         //JOBS
         [HttpPost("job")]
         public ActionResult addJob(AddJob job)
         {
-            return Ok(service.AddJob(job.TaskId, job.JobName));
+            if (ModelState.IsValid)
+            {
+                return Ok(service.AddJob(job.TaskId, job.JobName));
+            }
+
+            return BadRequest();
         } 
 
         [HttpDelete("job")]
         public ActionResult deleteJobById(DeleteJob job)
         {
-            return Ok(service.DeleteJobById(job.TaskId, job.JobId));
+            if (ModelState.IsValid)
+            {
+                return Ok(service.DeleteJobById(job.TaskId, job.JobId));
+            }
+
+            return BadRequest();
         }
 
         [HttpPut("job")]
         public ActionResult updateJobName(UpdateJob job)
         {
-            return Ok(service.UpdateJobName(job.TaskId, job.JobId, job.JobName));
+            if (ModelState.IsValid)
+            {
+                return Ok(service.UpdateJobName(job.TaskId, job.JobId, job.JobName));
+            }
+
+            return BadRequest();
         }
 
         [HttpPut("job/done")]
         public ActionResult updateJobDone(UpdateJob job)
         {
-            return Ok(service.UpdateJobDone(job.TaskId, job.JobId, job.Done));
+            if (ModelState.IsValid)
+            {
+                return Ok(service.UpdateJobDone(job.TaskId, job.JobId, job.Done));
+            }
+
+            return BadRequest();
         }
     }
 }
