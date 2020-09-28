@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TasksModels;
 using TasksService.Instance;
 using TasksService.Interface;
 
@@ -40,7 +43,13 @@ namespace ToDoListAPI
 
             services.AddScoped<ITaskService, TaskService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddFluentValidation().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<IValidator<AddTask>, AddTaskValidator>();
+            services.AddTransient<IValidator<UpdateTask>, UpdateTaskValidator>();
+            services.AddTransient<IValidator<AddJob>, AddJobValidator>();
+            services.AddTransient<IValidator<DeleteJob>, DeleteJobValidator>();
+            services.AddTransient<IValidator<UpdateJob>, UpdateJobValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
