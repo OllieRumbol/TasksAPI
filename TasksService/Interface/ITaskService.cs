@@ -10,7 +10,7 @@ namespace TasksService.Interface
     {
         int getNextId<T>(List<T> list) where T : Identifier;
 
-        List<Task> addNewTask(string name);
+        List<Task> addNewTask(string name, string description);
 
         Task getTaskById(int id);
 
@@ -19,6 +19,8 @@ namespace TasksService.Interface
         List<Task> DeleteAllTasks();
 
         List<Task> DeleteTaskById(int id);
+
+        List<Task> UpdateTaskDescription(int id, string description);
 
         List<Task> UpdateTaskName(int id, string name);
 

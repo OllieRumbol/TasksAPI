@@ -44,7 +44,7 @@ namespace TasksAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(service.addNewTask(task.Task));
+                return Ok(service.addNewTask(task.Task, task.Description));
             }
 
             return BadRequest();
@@ -73,6 +73,17 @@ namespace TasksAPI.Controllers
             if (ModelState.IsValid)
             {
                 return Ok(service.UpdateTaskName(task.Id, task.Name));
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPut("description")]
+        public ActionResult updateTaskDescription(UpdateTask task)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(service.UpdateTaskDescription(task.Id, task.Description));
             }
 
             return BadRequest();

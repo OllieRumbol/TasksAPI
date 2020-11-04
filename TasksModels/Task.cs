@@ -8,13 +8,16 @@ namespace TasksModels
     {
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public List<Job> Jobs { get; set; }
 
         public Status Status { get; set; }
 
-        public Task(int Id, string Name, List<Job> Jobs, Status Status) : base(Id)
+        public Task(int Id, string Name, string Description, List<Job> Jobs, Status Status) : base(Id)
         {
             this.Name = Name;
+            this.Description = Description;
             this.Jobs = Jobs;
             this.Status = Status;
         }
