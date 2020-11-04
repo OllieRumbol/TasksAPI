@@ -9,6 +9,8 @@ namespace TasksModels
     public class AddTask
     {
         public string Task { get; set; }
+
+        public string Description { get; set; }
     }
 
     public class AddTaskValidator : AbstractValidator<AddTask>

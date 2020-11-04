@@ -25,9 +25,14 @@ namespace TasksService.Instance
             return Tasks;
         }
 
-        public List<Task> addNewTask(string name)
+        public List<Task> addNewTask(string name, string description)
         {
-            Task newTask = new Task(Id: getNextId(Tasks), Name: name, Jobs: new List<Job>(), Status: TasksModels.Status.ToDo);
+            Task newTask = new Task(
+                                    Id: getNextId(Tasks), 
+                                    Name: name, 
+                                    Description: description, 
+                                    Jobs: new List<Job>(), 
+                                    Status: TasksModels.Status.ToDo);
             Tasks.Add(newTask);
             return Tasks;
         }
@@ -118,6 +123,20 @@ namespace TasksService.Instance
                             break;
                         }
                     }
+                }
+            }
+
+            return Tasks;
+        }
+
+        public List<Task> UpdateTaskDescription(int id, string description)
+        {
+            foreach (Task task in Tasks)
+            {
+                if (task.Id == id)
+                {
+                    task.Description = description;
+                    break;
                 }
             }
 
