@@ -13,6 +13,8 @@ namespace TasksModels
 
         public string Description { get; set; }
 
+        public string  CompletedDate { get; set; }
+
         public string  Status { get; set; }
     }
 

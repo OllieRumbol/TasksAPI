@@ -24,7 +24,15 @@ namespace TasksTest.JobTest
         public void testDeleteJob_DeleteAJob()
         {
             //Arrange
-            service.addNewTask("Task 1");
+            AddTask addTask = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(addTask);
+
             service.AddJob(1, "Job 1");
             service.AddJob(1, "Job 2");
 

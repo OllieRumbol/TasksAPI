@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TasksModels;
 using TasksService.Instance;
 using TasksService.Interface;
 
@@ -22,9 +23,30 @@ namespace TasksTest
         public void testDeleteTask_DeleteATask()
         {
             //Arrange
-            service.addNewTask("Task 1");
-            service.addNewTask("Task 2");
-            service.addNewTask("Task 3");
+            AddTask task1 = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task2 = new AddTask()
+            {
+                Task = "Task 2",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task3 = new AddTask()
+            {
+                Task = "Task 3",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(task1);
+            service.addNewTask(task2);
+            service.addNewTask(task3);
 
             //Act
             service.DeleteTaskById(3);
@@ -37,9 +59,30 @@ namespace TasksTest
         public void testDeleteTask_DeleteAllTasks()
         {
             //Arrange
-            service.addNewTask("Task 1");
-            service.addNewTask("Task 2");
-            service.addNewTask("Task 3");
+            AddTask task1 = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task2 = new AddTask()
+            {
+                Task = "Task 2",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task3 = new AddTask()
+            {
+                Task = "Task 3",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(task1);
+            service.addNewTask(task2);
+            service.addNewTask(task3);
 
             //Act
             service.DeleteAllTasks();

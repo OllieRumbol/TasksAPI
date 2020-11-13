@@ -44,7 +44,7 @@ namespace TasksAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(service.addNewTask(task.Task, task.Description));
+                return Ok(service.addNewTask(task));
             }
 
             return BadRequest();
@@ -96,6 +96,17 @@ namespace TasksAPI.Controllers
             {
                 Status status = (Status)Enum.Parse(typeof(Status), task.Status, true);
                 return Ok(service.UpdateTaskStatus(task.Id, status));
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPut("complateddate")]
+        public ActionResult updateTaskCompletedDate(UpdateTask task)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(service.UpdateTaskCompletedDate(task.Id, task.CompletedDate));
             }
 
             return BadRequest();

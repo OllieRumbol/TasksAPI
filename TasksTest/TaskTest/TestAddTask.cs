@@ -23,11 +23,30 @@ namespace TasksTest
         public void testAddTask_AddingTask()
         {
             //Arrange 
+            AddTask task1 = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
 
-            //Act
-            service.addNewTask("Task 1");
-            service.addNewTask("Task 2");
-            service.addNewTask("Task 3");
+            AddTask task2 = new AddTask()
+            {
+                Task = "Task 2",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task3 = new AddTask()
+            {
+                Task = "Task 3",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(task1);
+            service.addNewTask(task2);
+            service.addNewTask(task3);
 
             //Assert
             Assert.AreEqual(3, service.getAllTasks().Count);

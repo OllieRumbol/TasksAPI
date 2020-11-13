@@ -23,8 +23,22 @@ namespace TasksTest
         public void testGetTask_GetTask()
         {
             //Arrange
-            service.addNewTask("Task 1");
-            service.addNewTask("Task 2");
+            AddTask task1 = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task2 = new AddTask()
+            {
+                Task = "Task 2",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(task1);
+            service.addNewTask(task2);
 
             //Act
             Task result = service.getTaskById(1);

@@ -13,9 +13,9 @@ namespace TasksService.Instance
 
         public List<Task> AddJob(int taskId, string jobName)
         {
-            foreach(Task task in Tasks)
+            foreach (Task task in Tasks)
             {
-                if(task.Id == taskId)
+                if (task.Id == taskId)
                 {
                     task.Jobs.Add(new Job(Id: getNextId(task.Jobs), Name: jobName, Done: false));
                     break;
@@ -25,13 +25,16 @@ namespace TasksService.Instance
             return Tasks;
         }
 
-        public List<Task> addNewTask(string name, string description)
+        public List<Task> addNewTask(AddTask task)
         {
+            DateTime date = DateTime.Parse(task.CompletedDate);
+
             Task newTask = new Task(
-                                    Id: getNextId(Tasks), 
-                                    Name: name, 
-                                    Description: description, 
-                                    Jobs: new List<Job>(), 
+                                    Id: getNextId(Tasks),
+                                    Name: task.Task,
+                                    Description: task.Description,
+                                    CompletedDate: date,
+                                    Jobs: new List<Job>(),
                                     Status: TasksModels.Status.ToDo);
             Tasks.Add(newTask);
             return Tasks;
@@ -70,7 +73,7 @@ namespace TasksService.Instance
 
         public int getNextId<T>(List<T> list) where T : Identifier
         {
-            if(list == null)
+            if (list == null)
             {
                 throw new NullReferenceException();
             }
@@ -115,14 +118,28 @@ namespace TasksService.Instance
             {
                 if (task.Id == taskId)
                 {
-                    foreach(Job job in task.Jobs)
+                    foreach (Job job in task.Jobs)
                     {
-                        if(job.Id == jobId)
+                        if (job.Id == jobId)
                         {
                             job.Name = jobName;
                             break;
                         }
                     }
+                }
+            }
+
+            return Tasks;
+        }
+
+        public List<Task> UpdateTaskCompletedDate(int id, string completedDate)
+        {
+            foreach (Task task in Tasks)
+            {
+                if (task.Id == id)
+                {
+                    task.CompletedDate = DateTime.Parse(completedDate);
+                    break;
                 }
             }
 
@@ -145,9 +162,9 @@ namespace TasksService.Instance
 
         public List<Task> UpdateTaskName(int id, string name)
         {
-            foreach(Task task in Tasks)
+            foreach (Task task in Tasks)
             {
-                if(task.Id == id)
+                if (task.Id == id)
                 {
                     task.Name = name;
                     break;

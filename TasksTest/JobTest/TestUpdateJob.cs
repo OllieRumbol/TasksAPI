@@ -24,7 +24,14 @@ namespace TasksTest.JobTest
         public void testupdateJob_UpdateNameOfJob()
         {
             //Arrange
-            service.addNewTask("Task 1");
+            AddTask addTask = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(addTask);
             service.AddJob(1, "Job 1");
 
             //Act
@@ -38,7 +45,14 @@ namespace TasksTest.JobTest
         public void testupdateJob_UpdateStatusOfJob()
         {
             //Arrange
-            service.addNewTask("Task 1");
+            AddTask addTask = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(addTask);
             service.AddJob(1, "Job 1");
 
             //Act
