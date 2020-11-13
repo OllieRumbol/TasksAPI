@@ -35,8 +35,22 @@ namespace TasksTest
         public void testGetNextId_Check()
         {
             //Arrange 
-            service.addNewTask("Blank");
-            service.addNewTask("Blank2");
+            AddTask task1 = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            AddTask task2 = new AddTask()
+            {
+                Task = "Task 2",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(task1);
+            service.addNewTask(task2);
 
             //Act
             int id = service.getNextId(service.getAllTasks());

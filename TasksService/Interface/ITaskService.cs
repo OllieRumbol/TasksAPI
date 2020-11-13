@@ -10,7 +10,7 @@ namespace TasksService.Interface
     {
         int getNextId<T>(List<T> list) where T : Identifier;
 
-        List<Task> addNewTask(string name, string description);
+        List<Task> addNewTask(AddTask task);
 
         Task getTaskById(int id);
 
@@ -25,6 +25,8 @@ namespace TasksService.Interface
         List<Task> UpdateTaskName(int id, string name);
 
         List<Task> UpdateTaskStatus(int id, Status status);
+
+        List<Task> UpdateTaskCompletedDate(int id, string completedDate);
 
         List<Task> AddJob(int taskId, string jobName);
 

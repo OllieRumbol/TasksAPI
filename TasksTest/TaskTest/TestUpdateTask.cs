@@ -23,7 +23,14 @@ namespace TasksTest
         public void testUpdateTask_UpdateTaskName()
         {
             //Arrange
-            service.addNewTask("Task 1");
+            AddTask addTask = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(addTask);
 
             //Act
             service.UpdateTaskName(1, "Task 2");
@@ -37,7 +44,14 @@ namespace TasksTest
         public void testUpdateTask_UpdateTaskStatus()
         {
             //Arrange
-            service.addNewTask("Task 1");
+            AddTask addTask = new AddTask()
+            {
+                Task = "Task 1",
+                Description = String.Empty,
+                CompletedDate = DateTime.Now.ToString()
+            };
+
+            service.addNewTask(addTask);
 
             //Act
             service.UpdateTaskStatus(1, Status.Done);
